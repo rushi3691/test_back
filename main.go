@@ -8,6 +8,16 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
+func getPort() string {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = ":3000"
+	} else {
+		port = ":" + port
+	}
+
+	return port
+}
 func main() {
 	app := fiber.New()
 	app.Use(cors.New(cors.Config{
@@ -39,10 +49,6 @@ func main() {
 	app.Get("/c", func(c *fiber.Ctx) error {
 		return c.JSON(c.Cookies("SSIDCP"))
 	})
-	PORT := ":8000"
-	if p := os.Getenv("PORT"); p != "" {
-		PORT = ":" + PORT
-	}
 
-	app.Listen(PORT)
+	app.Listen(getPort())
 }
