@@ -1,13 +1,11 @@
 FROM golang:1.19.4-alpine
 
-WORKDIR /app
-
-COPY . ./
+COPY . .
 
 RUN go mod download
 
 
-RUN go build -o /app
+RUN go build -o app
 
 EXPOSE 8080
 
