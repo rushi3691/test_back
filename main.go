@@ -11,8 +11,9 @@ import (
 func main() {
 	app := fiber.New()
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: "http://localhost:3000, https://gofiber.net",
-		AllowHeaders: "Origin, Content-Type, Accept",
+		AllowOrigins:     "http://localhost:3000, https://exuberant-cowboy-hat-yak.cyclic.app/",
+		AllowCredentials: true,
+		// AllowHeaders:     "Origin, Content-Type, Accept",
 	}))
 	app.Get("/s", func(c *fiber.Ctx) error {
 		c.Cookie(&fiber.Cookie{
